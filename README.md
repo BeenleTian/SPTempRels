@@ -30,6 +30,7 @@ In the paper we used the [THYME](https://clear.colorado.edu/TemporalWiki/index.p
   * ...
 
 In our experiments we use POS, and dependency parse features from the [cTAKES Clincal Pipeline](http://ctakes.apache.org/). So, you need to provide the cTAKES output xml files as well. Here we assume these are in a directory called `$CTAKES_XML_FEATURES`. You can also call the program without the -ctakes_out argument. Then the it will use the Stanford POS Tagger for POS tag features instead (and no dependency parse features). The folder structure of this directory is:
+
 `$CTAKES_XML_FEATURES`
 * `ID001_clinic_001.xml`
 * ...
