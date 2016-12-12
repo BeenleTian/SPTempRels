@@ -338,29 +338,6 @@ class StructuredPerceptron:
 					Yn_ee.append(Y_ee[index])
 		return ((X_e, Xn_ee), (Y_e, Yn_ee))	
 					
-def get_balanced_undersample(X,Y, e_labels, ee_labels, min_size = 5):
-		(X_e, X_ee),(Y_e, Y_ee) = X,Y
-		e_counts, ee_counts = {l:0 for l in e_labels},{l:0 for l in ee_labels}
-		e_indices, ee_indices = {l:[] for l in e_labels}, {l:[] for l in ee_labels}
-		for i,l in enumerate(Y_e):
-			e_counts[l] +=1
-			e_indices[l].append(i)
-		for i,l in enumerate(Y_ee):
-			ee_counts[l] += 1
-			ee_indices[l].append(i)
-		min_e = min(e_counts.values()) + min_size
-		min_ee = min(ee_counts.values()) + min_size
-		Xn_e, Xn_ee, Yn_e, Yn_ee = [],[],[],[]
-		for l in e_labels:
-			random.shuffle(e_indices[l])
-			Xn_e += [X_e[i] for i in e_indices[l][:min_e]]
-			Yn_e += [Y_e[i] for i in e_indices[l][:min_e]]
-		for l in ee_labels:
-			random.shuffle(ee_indices[l])
-			Xn_ee += [X_ee[i] for i in ee_indices[l][:min_ee]]
-			Yn_ee += [Y_ee[i] for i in ee_indices[l][:min_ee]]
-		return ((Xn_e, Xn_ee), (Yn_e,Yn_ee))
-
 
 
 
