@@ -1,6 +1,6 @@
 # Structured Perceptron: Clinical Temporal Relation Extraction
 
-This tool can be used to train a structured perceptron model for extracting temporal relations from clinical texts, in which events and temporal expressions are given. For technical details please refer to [Leeuwenberg and Moens (2017)](https://people.cs.kuleuven.be/~tuur.leeuwenberg/index.html). The code can also be used to reproduce the results from the paper. When using this code please refer to the EACL paper (see reference at the bottom of this page).
+This code can be used to train a structured perceptron model for extracting temporal relations from clinical texts, in which events and temporal expressions are given. It can also be used to replicate the experiments done in [Leeuwenberg and Moens (2017)](https://people.cs.kuleuven.be/~tuur.leeuwenberg/index.html). When using this code please refer to the paper (see reference below).
 
 ### Requirements
 * [Python2.7](https://www.python.org/downloads/release/python-2711/)
@@ -16,7 +16,7 @@ When cTAKES output is not provided the program backs off to the [Stanford POS ta
 
 ### Data
 
-In the paper we used the [THYME](https://clear.colorado.edu/TemporalWiki/index.php/Main_Page) corpus sections as used for the [Clinical TempEval 2016](http://alt.qcri.org/semeval2016/task12/index.php?id=data) shared task. So, training or testing data should be provided in the anafora xml format, in the folder structure as indicated below (and used in Clinical TempEval), where in the deepest level there is the text file ID001_clinic_001 and corresponding xml annotations ID001_clinic_001.Temporal-Relation.gold.completed. Note that we refer to the top level of the THYME data (`$THYME`) also in the python calls below.
+In the paper we used the [THYME](https://clear.colorado.edu/TemporalWiki/index.php/Main_Page) corpus sections as used for the [Clinical TempEval 2016](http://alt.qcri.org/semeval2016/task12/index.php?id=data) shared task. So, training, development, or test data should be provided in the anafora xml format, in the folder structure as indicated below, where in the deepest level contains the text file `ID001_clinic_001` and corresponding xml annotations `ID001_clinic_001.Temporal-Relation.gold.completed`. Notice that we refer to the top level of the THYME data (`$THYME`) also in the python calls below.
 
 `$THYME`
 * `Train`
@@ -29,15 +29,13 @@ In the paper we used the [THYME](https://clear.colorado.edu/TemporalWiki/index.p
 * `Test`
   * ...
 
-
-
-In our experiments we use part-of-speech, and dependency parse features from the [cTAKES Clincal Pipeline](http://ctakes.apache.org/). So, you need to provide the cTAKES output XML files as well (here we assume these are in a directory called `$CTAKES_XML_FEATURES`. You can also leave this directory empty, then the program will use the Stanford POS Tagger for POS tag features (and no dependency parse features). The folder structure of this directory is:
+In our experiments we use POS, and dependency parse features from the [cTAKES Clincal Pipeline](http://ctakes.apache.org/). So, you need to provide the cTAKES output xml files as well. Here we assume these are in a directory called `$CTAKES_XML_FEATURES`. You can also call the program without the -ctakes_out argument. Then the it will use the Stanford POS Tagger for POS tag features instead (and no dependency parse features). The folder structure of this directory is:
 `$CTAKES_XML_FEATURES`
 * `ID001_clinic_001.xml`
 * ...
 
 ### Experiments: Leeuwenberg and Moens (2017)
-To obtain the predicted anafora xml output from the experiments of section 4 in the paper you can use the example calls below. Each call will provide the anafora xml output in the directory `$SP_PREDICTIONS` for the corresponding setting. To get more information about the parameters, you can run:
+To obtain the predictions from the experiments of section 4 in the paper you can use the example calls below. Each call will output the anafora xmls to the directory `$SP_PREDICTIONS`. To get more information about the usage of the tool you can run:
 ```
 python main.py -h
 ```
