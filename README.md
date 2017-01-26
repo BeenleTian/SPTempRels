@@ -1,6 +1,23 @@
-# Structured Perceptron: Clinical Temporal Relation Extraction
+# SPTempRels
 
-This code can be used to train a structured perceptron model for extracting temporal relations from clinical texts, in which events and temporal expressions are given. It can also be used to replicate the experiments done in [Leeuwenberg and Moens (2017)](https://people.cs.kuleuven.be/~tuur.leeuwenberg/index.html). When using this code please refer to the paper (see reference below).
+SPTempRels trains a structured perceptron model for extracting temporal relations from clinical texts, in which events and temporal expressions are given. It can also be used to replicate the experiments done by [Leeuwenberg and Moens (EACL, 2017)](eacl2017.org/index.php/program/accepted-papers). The paper contains a more detailed description of the model. When using this code please refer to the paper.
+
+## Reference
+
+```
+@InProceedings{leeuwenberg2017structured:EACL,
+  author    = {Leeuwenberg, Artuur and Moens, Marie-Francine},
+  title     = {Structured Learning for Temporal Relation Extraction from Clinical Records},
+  booktitle = {Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics},
+  month     = {April},
+  year      = {2017},
+  address   = {Valencia, Spain},
+  publisher = {Association for Computational Linguistics},
+}
+```
+## License
+MIT
+
 
 ### Requirements
 * [Python2.7](https://www.python.org/downloads/release/python-2711/)
@@ -63,18 +80,6 @@ python main.py $THYME 1 0 32 MUL,Ctrans,Btrans,C_CBB,C_CAA,C_BBB,C_BAA  1000 Tes
 python main.py $THYME 1 0 32 MUL  1000 Test -averaging 1 -local_initialization 1 -negative_subsampling 'loss_augmented' -lowercase 1 -lr 1 -output_xml_dir $SP_PREDICTIONS -constraint_setting CC -ctakes_out_dir $CTAKES_XML_FEATURES -decreasing_lr 0 -structured_features DCTR_bigrams,DCTR_trigrams
 ```
 
-## Reference
 
-```
-@InProceedings{leeuwenberg2017structured:EACL,
-  author    = {Leeuwenberg, Artuur and Moens, Marie-Francine},
-  title     = {Structured Learning for Temporal Relation Extraction from Clinical Records},
-  booktitle = {Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics},
-  month     = {April},
-  year      = {2017},
-  address   = {Valencia, Spain},
-  publisher = {Association for Computational Linguistics},
-}
-```
 
 
