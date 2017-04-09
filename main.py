@@ -155,7 +155,7 @@ if args.execute:
 	exec args.execute
 		
 # GLOBAL HYPERPARAMETERS
-negative_subsampling=args.negative_subsampling # important for containment (and speed)!
+negative_subsampling=args.negative_subsampling
 plot_loss = False
 averaged = bool(args.averaging)
 balance = False
@@ -168,7 +168,7 @@ local_initialization = bool(args.local_initialization)
 regularization= args.regularization
 regularization_term = args.regularization_term
 
-constraints = set(args.constraints.split(',')) # C-trans and B-trans can make prediction very very slow!
+constraints = set(args.constraints.split(',')) 
 training_constraints, test_constraints = set(['MUL']), set(['MUL'])
 if args.constraint_setting[0] == 'C':
 	training_constraints = constraints
@@ -195,7 +195,6 @@ else:
 		if not 'DCTR' in args.tasks.split(','):
 			X_e = []
 		if not 'TLINK' in args.tasks.split(','):
-			#X_ee[0].tlink = 'no_label'
 			X_ee = []		
 		
 		print('extracting features for ',doc.ID(),'e:',len(X_e),'ee:',len(X_ee))
@@ -249,10 +248,9 @@ if normalise_features:
 
 if local_prediction or local_initialization:
 	print('== LOCAL TRAINING ==\n...')
-	# linear_model.Perceptron()
 	
-	classifier_e = OneVsRestClassifier(linear_model.Perceptron(n_iter=args.pit))#linear_model.LogisticRegression()
-	classifier_ee = OneVsRestClassifier(linear_model.Perceptron(n_iter=args.pit))#linear_model.LogisticRegression()
+	classifier_e = OneVsRestClassifier(linear_model.Perceptron(n_iter=args.pit))
+	classifier_ee = OneVsRestClassifier(linear_model.Perceptron(n_iter=args.pit))
 	
 	local_label_encoder_ee = preprocessing.LabelEncoder()
 	local_label_encoder_e = preprocessing.LabelEncoder()
@@ -305,7 +303,6 @@ if structured_prediction:
 		for (k,vc,vn) in sorted([(k,vc,weights_Oe[k]) for (k,vc) in weights_Be.items() if k in weights_Oe], key=lambda x:abs(x[1]-x[2]), reverse=True)[:30]:
 			print(vc,'\t',vn,'\t',k)
 
-	#print(sum(weights_Be.values()), sum(weights_Oe.values()))
 	
 	
 
